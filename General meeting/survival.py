@@ -17,11 +17,12 @@ data = pd.read_csv('Dependence Test.csv')
 # Map labels to events (1: normal, i.e., truncated events, and 0: failure, i.e., non-truncated events)
 data['Event'] = data['Label'].apply(lambda x: 1 if x == 'normal' else 0)
 
-# 创建一个标准化器
+# Create a Standard Scaler
 scaler = StandardScaler()
 
-# 对'Undersizing Rate'列进行标准化
+# Standardize the 'Undersizing Rate' column
 data['Undersizing Rate'] = scaler.fit_transform(data['Undersizing Rate'].values.reshape(-1, 1))
+
 
 
 
