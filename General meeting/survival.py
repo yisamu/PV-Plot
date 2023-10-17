@@ -10,12 +10,20 @@ from lifelines import KaplanMeierFitter
 from lifelines import CoxPHFitter #Cox Proportional Hazard model
 from scipy.stats import spearmanr
 import os
-
+from sklearn.preprocessing import StandardScaler
 # Read CSV file
 data = pd.read_csv('Dependence Test.csv')
 
 # Map labels to events (1: normal, i.e., truncated events, and 0: failure, i.e., non-truncated events)
 data['Event'] = data['Label'].apply(lambda x: 1 if x == 'normal' else 0)
+
+# 创建一个标准化器
+scaler = StandardScaler()
+
+# 对'Undersizing Rate'列进行标准化
+data['Undersizing Rate'] = scaler.fit_transform(data['Undersizing Rate'].values.reshape(-1, 1))
+
+
 
 ################ Survival Model #########################
 # Create Kaplan-Meier estimator object
@@ -52,7 +60,7 @@ plt.legend()
 # Get the current directory where the script is located
 current_directory = os.getcwd()
 # Specify the file name and save the plot in the current directory
-file_name = "Survival_Curves.svg"
+file_name = "Survival_Curves.pdf"
 plt.savefig(os.path.join(current_directory, file_name))
 plt.show()
 
