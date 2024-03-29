@@ -1,3 +1,4 @@
+## lifetime distribution kde, joint, weilbull
 '''
 
 
