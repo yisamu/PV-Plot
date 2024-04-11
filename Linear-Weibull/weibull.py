@@ -109,12 +109,11 @@ data_standardized, mean_std_dict = standardize(data.copy(), features + [target])
 X_new = pd.DataFrame({
     'oversizing_rate': [0.01, 0.01, 0.01],  # 两个不同的示例值
     'top_1_high_average': [32, 32, 32],  # 相同的示例值
-    'top_1_low_average': [-22, -22, -22] , # 相同的示例值
+    'top_1_low_average': [-22, -26, -30] , # 相同的示例值
     'event_number':     [0.02,0.02, 0.02],  # 两个不同的示例值
-    'top_1_temp_diff':  [24,26, 28],   # 相同的示例值
+    'top_1_temp_diff':  [24,24, 24],   # 相同的示例值
     'top_1_wind_average': [33, 33,33]   # 相同的示例值
 })
-
 # 使用相同的均值和标准差来标准化 X_new
 X_new_standardized, _ = standardize(X_new.copy(), features, mean_std_dict)
 
